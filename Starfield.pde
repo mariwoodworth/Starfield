@@ -16,6 +16,10 @@ void draw()
 class NormalParticle
 {
 	double myX,myY,myAngle,mySpeed;
+  myX = 320;
+  myY = 240;
+  myAngle = (Math.PI)*2;
+  mySpeed = (float)(Math.random)*10;
 }
 interface Particle
 {
@@ -26,7 +30,7 @@ class OddballParticle
 {
 	//your code here
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle
 {
 	//your code here
 }
