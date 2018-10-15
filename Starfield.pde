@@ -11,7 +11,7 @@ void setup()
 }
 void draw()
 {
-	//your code here
+	
 }
 class NormalParticle
 {
@@ -28,9 +28,19 @@ interface Particle
 }
 class OddballParticle 
 {
-	//your code here
+	public void move()
+  {
+  }
+  public void show()
+  {
+  }
 }
 class JumboParticle extends NormalParticle
 {
-	//your code here
+	public void move()
+  {
+  }
+  public void show()
+  {
+  }
 }
