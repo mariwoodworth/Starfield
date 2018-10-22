@@ -1,46 +1,88 @@
-NormalParticle[] particles;
-particles[0] = new OddballParticle();
+Particle[] bob;
 
 void setup()
 {
-	particles = new NormalParticle[300];
-        for(int nI = 0; nI < particles.length; nI++){
-            particles[nI] = new NormalParticle();
-        }
-
+  size(500, 500);
+	bob = new Particle[1000];
+  for (int i=0; i<bob.length; i++)
+  {
+    bob[i] = new NormalParticle();
+    bob[2] = new OddballParticle();
+    bob[0] = new JumboParticle();
+  }
 }
 void draw()
 {
-	
+	background(0);
+  for(int i=0; i<bob.length; i++)
+  {
+    bob[i].show();
+    bob[i].move();
+  }
 }
-class NormalParticle
+
+class NormalParticle implements Particle
 {
 	double myX,myY,myAngle,mySpeed;
-  myX = 320;
-  myY = 240;
-  myAngle = (Math.PI)*2;
-  mySpeed = (float)(Math.random)*10;
+  
+  NormalParticle()
+  {
+    myX = 250;
+    myY = 250;
+    myAngle = (Math.random()*8)-2;
+  }
+  
+  public void move() 
+  {
+    mySpeed = (Math.random()*10)-3;
+    myX = myX + (Math.cos(myAngle)*mySpeed);
+    myY = myY + (Math.sin(myAngle)*mySpeed);
+  }
+  
+  public void show() 
+  {
+    fill((int)(Math.random()*256),(int)(Math.random()*256), (int)(Math.random()*256));
+    ellipse((int)myX, (int)myY, 5, 5);
+  }
 }
 interface Particle
 {
 	public void move();
   public void show();
 }
-class OddballParticle 
+class OddballParticle implements Particle
 {
+  double myX, myY, mySpeed, myAngle;
+  OddballParticle()
+  {
+    myY = 90;
+    myX = 100;
+    mySpeed = (Math.random()*10)-3;
+    
+  }
 	public void move()
   {
+    mySpeed = (Math.random()*10)-8;
+    myX = myX + Math.cos(myAngle);
+    myY = myY + Math.sin(myAngle);
   }
   public void show()
   {
+    fill(167, 117, 250);
+    ellipse((float)myX, (float)myY, 70, 30);
+    fill(60);
+    ellipse((float)myX, (float)myY-10, 30, 25); //top cover
+    fill(230);
+    ellipse((float)myX, (float)myY-5, 20, 15); //control pad
+    fill(56, 234, 54);
+    ellipse((float)myX, (float)myY-10, 10, 14); //alien
   }
 }
 class JumboParticle extends NormalParticle
 {
-	public void move()
-  {
-  }
   public void show()
   {
+    fill(95, 25, 209);
+    ellipse((float)myX, (float)myY, 70, 70);
   }
 }
